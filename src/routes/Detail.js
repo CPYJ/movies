@@ -17,20 +17,21 @@ function Detail() {
         setLoading(false);
     };
 
-    useEffect(() => { getMovie(); }, []);
+    useEffect(() => {getMovie()}, []);
 
     return <div className={styles.container}>
         {loading ? (<div className={styles.loader}>
         <span>loading...</span></div>) : (<div className={styles.movie}>
         <h1 className={styles.movie__title}>{movie.title}</h1>
-        <img src={movie.large_cover_image} className={styles.movie__image}/>
+        <img src={movie.large_cover_image} className={styles.movie__image} alt={movie.title}/>
         <p>rating : {movie.rating}</p>
         <p>runtime : {movie.runtime}</p>
         <h4>genres</h4>
         <ul className={styles.movie__genres}>
-            {movie.genres?.map(g => <li>{g}</li>)}
+            {movie.genres?.map(g => <li key={g}>{g}</li>)}
         </ul>
-        <p><h4>description</h4>
+        <h4>description</h4>
+        <p>
             {movie.description_full}</p>
 
     </div>)}
